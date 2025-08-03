@@ -1,14 +1,10 @@
 "use client";
 import React, { useState, ChangeEvent, DragEvent } from "react";
-import { Upload, FileText, Zap, CheckCircle, AlertCircle } from "lucide-react";
+import { Upload, Zap, AlertCircle } from "lucide-react";
 import styles from "./ResumeAnalyzer.module.css";
 import analyzeResumeServerAction from "./analyzeResumeServerAction";
-
-interface AnalysisResults {
-  resume_rating: number;
-  resume_jd_match: number;
-  analysis: string;
-}
+import Dashboard from "../ui/Dashboard";
+import { AnalysisResults } from "../types/analysisResults";
 
 export default function ResumeAnalyzer() {
   const [file, setFile] = useState<File | null>(null);
@@ -72,10 +68,10 @@ const handleSubmit = async () => {
     const result = await analyzeResumeServerAction(formData);
     
     if (!result.success) {
-      throw new Error(result.error);
+      console.log("result.success: ", result.success);
     }
-
-    setResults(result.data);
+    
+      setResults(result.data);
   } catch (err: any) {
     setError(`Analysis failed: ${err.message}`);
   } finally {
@@ -201,45 +197,10 @@ const handleSubmit = async () => {
           </div>
         )}
 
-        {results && (
-          <div className={styles.resultsCard}>
-            <div className={styles.resultsHeader}>
-              <CheckCircle size={24} />
-              <h2>Analysis Results</h2>
-            </div>
-
-            <div className={styles.metricsGrid}>
-              <div className={styles.metricCard}>
-                <div
-                  className={styles.metricValue}
-                  style={{ color: getRatingColor(results.resume_rating) }}
-                >
-                  {results.resume_rating}/5
-                </div>
-                <div className={styles.metricLabel}>Resume Rating</div>
-              </div>
-
-              <div className={styles.metricCard}>
-                <div
-                  className={styles.metricValue}
-                  style={{ color: getMatchColor(results.resume_jd_match) }}
-                >
-                  {Math.round(results.resume_jd_match * 100)}%
-                </div>
-                <div className={styles.metricLabel}>Job Match Score</div>
-              </div>
-            </div>
-
-            <div className={styles.analysisSection}>
-              <h3 className={styles.analysisTitle}>
-                <FileText size={20} />
-                Detailed Analysis
-              </h3>
-              <p>{results.analysis}</p>
-            </div>
-          </div>
-        )}
       </div>
+        {results && (
+          <Dashboard data={results}/>
+        )}
     </div>
   );
 }

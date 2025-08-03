@@ -145,62 +145,6 @@
   cursor: not-allowed;
 }
 
-.resultsCard {
-  background-color: #1a1a1a;
-  border: 1px solid #059669;
-  border-radius: 12px;
-  padding: 2rem;
-}
-
-.resultsHeader {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 1.5rem;
-  color: #10b981;
-}
-
-.metricsGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
-  margin-bottom: 2rem;
-}
-
-.metricCard {
-  background-color: #111827;
-  padding: 1rem;
-  border-radius: 8px;
-  text-align: center;
-}
-
-.metricValue {
-  font-size: 2rem;
-  font-weight: bold;
-  margin-bottom: 0.25rem;
-}
-
-.metricLabel {
-  font-size: 0.875rem;
-  color: #9ca3af;
-}
-
-.analysisSection {
-  background-color: #111827;
-  padding: 1.5rem;
-  border-radius: 8px;
-  line-height: 1.6;
-}
-
-.analysisTitle {
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
-  color: #e5e7eb;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
 
 .errorCard {
   background-color: #1a1a1a;

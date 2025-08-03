@@ -20,4 +20,5 @@ graph.add_conditional_edges(
     )
 graph.add_edge('llm_response', END)
 
+print("============== graph.compiled =================")
 workflow = graph.compile()

@@ -1,15 +1,17 @@
 "use server";
 
 const analyzeResumeServerAction = async (formData: FormData) => {
-
+  const isProd = process.env.NODE_ENV === "production";
+  const apiUrl = isProd
+    ? "https://resume-analyzer-q2ps.onrender.com/analyze_resume"
+    : "http://127.0.0.1:8000/analyze_resume";
   try {
-    const response = await fetch(
-      "https://resume-analyzer-q2ps.onrender.com/analyze_resume",
-      {
-        method: "POST",
-        body: formData,
-      }
-    );
+    console.log(apiUrl);
+    
+    const response = await fetch(apiUrl, {
+      method: "POST",
+      body: formData,
+    });
 
     if (!response.ok) {
       const errorData = await response.json();

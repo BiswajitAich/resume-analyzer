@@ -2,6 +2,7 @@ import pdfplumber
 from utils.states import ResumeAnalyserState
 
 def extract_text_from_pdf(state: ResumeAnalyserState) -> ResumeAnalyserState:
+    print("================ extract_text_from_pdf called ==============")
     try:
         with pdfplumber.open(state['file'].file) as pdf:
             first_page = pdf.pages[0]
